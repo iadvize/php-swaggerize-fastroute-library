@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        bootstrap="./../vendor/autoload.php"
+        colors="true"
+        verbose="true"
+        stopOnError="true"
+        stopOnFailure="true"
+        convertErrorsToExceptions="true"
+        backupStaticAttributes="false">
+    <testsuites>
+        <testsuite name="php-swaggerize-fastroute-library">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
