@@ -7,7 +7,7 @@ composer require iadvize/php-swaggerize-fastroute-library
 ```
 # Dispatch swagger app
 
-```
+```PHP
 <?php
 
 require '/path/to/vendor/autoload.php';
@@ -42,7 +42,7 @@ switch ($routeInfo[0]) {
 
 Parse swagger JSON and create route dynamically at each API call can be heavy. If you need performance, use FastRoute cachedDispatcher
 
-```
+```PHP
 <?php
 
 require '/path/to/vendor/autoload.php';
