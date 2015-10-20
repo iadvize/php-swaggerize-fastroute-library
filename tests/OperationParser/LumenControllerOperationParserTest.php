@@ -20,7 +20,7 @@ class LumenControllerOperationParserTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->operationParser = new LumenControllerOperationParser('Iadvize\Test\\');
+        $this->operationParser = new LumenControllerOperationParser('Iadvize\Test');
     }
 
     /**

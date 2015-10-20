@@ -33,8 +33,8 @@ class LumenControllerOperationParser implements OperationParserInterface
      */
     public function __construct($controllerNamespace)
     {
-        if (strpos($controllerNamespace, '\\') === strlen($controllerNamespace) - 1) {
-            $controllerNamespace = mb_substr($controllerNamespace, 0, -1);
+        if (substr('$controllerNamespace', -1) !== '\\') {
+            $controllerNamespace .= '\\';
         }
 
         $this->namespace = $controllerNamespace;
