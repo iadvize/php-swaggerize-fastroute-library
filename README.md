@@ -12,7 +12,7 @@ composer require iadvize/php-swaggerize-fastroute-library
 vendor/bin/swaggerize swagger:scan path/to/swagger/json controllers\namespace [--routeFile=route/file/path]
 ```
 
-# Dispatch generated file
+# Dispatch generated file or simply use cache
 
 You can then use FastRoute cached dispatcher to use generated file or directly use a cache dispatcher (file will be generated at first call).
 
@@ -24,42 +24,25 @@ require '/path/to/vendor/autoload.php';
 $lumenOperationParser = new \Iadvize\SwaggerizeFastRoute\OperationParser\LumenControllerOperationParser('Controllers\\Namespace\\');
 
 $dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $r, ['cacheFile' => 'route/file/path']) {
-    \Iadvize\SwaggerizeFastRoute\scan('https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json', $r, $lumenOperationParser);
+    \Iadvize\SwaggerizeFastRoute\addRoutes(
+        'https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json',
+         $r,
+         $lumenOperationParser,
+         ['routeFile' => 'path/to/generated/route/file']
+     );
 });
 
-// Fetch method and URI from somewhere
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-switch ($routeInfo[0]) {
-    case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
-        break;
-    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
-        // ... 405 Method Not Allowed
-        break;
-    case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-        // ... call $handler with $vars
-        break;
-}
-```
-
-# Directly dispatch swagger app
-
-```PHP
-<?php
-
-require '/path/to/vendor/autoload.php';
-
-$lumenOperationParser = new \Iadvize\SwaggerizeFastRoute\OperationParser\LumenControllerOperationParser('Controllers\\Namespace\\');
-
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    \Iadvize\SwaggerizeFastRoute\scan('https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json', $r, $lumenOperationParser);
+// Alternatively use cache
+/**
+$dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $r, ['cacheFile' => 'route/file/path']) {
+    \Iadvize\SwaggerizeFastRoute\addRoutes(
+        'https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json',
+         $r,
+         $lumenOperationParser,
+         ['routeFile' => 'path/to/generated/route/file', 'cacheEnabled' => true]
+     );
 });
+*/
 
 // Fetch method and URI from somewhere
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -84,7 +67,7 @@ switch ($routeInfo[0]) {
 
 # Apply this to Lumen application
 
-To use this swagger routes in a Lumen Application (which use FastRoute as route library), you need to extends `Laravel\Lumen\Application` and override `createDispatcher` class.
+To use this swagger routes in a Lumen Application (which use FastRoute as route library), you need to extends `Laravel\Lumen\Application` and override `createDispatcher` method.
 
 ```PHP
 
@@ -117,7 +100,7 @@ class Application extends LumenApplication
         });
     }
 }
-
+```
 
 # How handler is formed
 
