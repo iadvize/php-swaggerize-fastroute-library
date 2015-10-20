@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php
+require 'vendor/autoload.php';
+
+$app = new \Symfony\Component\Console\Application();
+$app->add(new \Iadvize\SwaggerizeFastRoute\Command\Scan());
+$app->run();
