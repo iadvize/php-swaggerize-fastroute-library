@@ -80,6 +80,10 @@ function addRoutes($swaggerJson, RouteCollector $routeCollector, OperationParser
  */
 function cacheRoutes(array $routes, $stream)
 {
+    if (is_writable($stream)) {
+        throw new \LogicException($stream . ' is not writable');
+    }
+
     $routeResource = fopen($stream, 'w');
 
     $serializedRoutes = var_export($routes, true);

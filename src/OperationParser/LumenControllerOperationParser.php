@@ -56,9 +56,9 @@ class LumenControllerOperationParser implements OperationParserInterface
         $paths = explode('/', $path);
         // path start with a /
         unset($paths[0]);
-        foreach ($paths as &$path) {
-            $path[0] = strtoupper($path[0]);
-        }
+        $paths = array_map(function ($path) {
+            return ucfirst($path);
+        }, $paths);
         // path to 'relative' namespace
         $path = implode('\\', $paths);
 

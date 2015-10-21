@@ -2,6 +2,7 @@
 
 namespace Iadvize\SwaggerizeFastRoute\Command;
 
+use Iadvize\SwaggerizeFastRoute\OperationParser\LumenControllerOperationParser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -54,7 +55,7 @@ class Scan extends Command
             $routeStream = 'php://output';
         }
 
-        $operationParser = new \Iadvize\SwaggerizeFastRoute\OperationParser\LumenControllerOperationParser($controllerNamespace);
+        $operationParser = new LumenControllerOperationParser($controllerNamespace);
 
         $routes = \Iadvize\SwaggerizeFastRoute\scan($swaggerFile, $operationParser);
 
