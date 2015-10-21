@@ -23,47 +23,20 @@ require '/path/to/vendor/autoload.php';
 
 $lumenOperationParser = new \Iadvize\SwaggerizeFastRoute\OperationParser\LumenControllerOperationParser('Controllers\\Namespace\\');
 
-$dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $r, ['cacheFile' => 'route/file/path']) {
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r, ['cacheFile' => 'route/file/path']) {
     \Iadvize\SwaggerizeFastRoute\addRoutes(
-        'https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json',
+        'path/to/swagger/json',
          $r,
          $lumenOperationParser,
-         ['routeFile' => 'path/to/generated/route/file']
+         ['routeFile' => 'path/to/generated/route/file', 'cacheEnabled' => false]
      );
 });
-
-// Alternatively use cache
-/**
-$dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $r, ['cacheFile' => 'route/file/path']) {
-    \Iadvize\SwaggerizeFastRoute\addRoutes(
-        'https://raw.githubusercontent.com/wordnik/swagger-spec/master/examples/v2.0/json/petstore.json',
-         $r,
-         $lumenOperationParser,
-         ['routeFile' => 'path/to/generated/route/file', 'cacheEnabled' => true]
-     );
-});
-*/
 
 // Fetch method and URI from somewhere
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-switch ($routeInfo[0]) {
-    case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
-        break;
-    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
-        // ... 405 Method Not Allowed
-        break;
-    case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-        // ... call $handler with $vars
-        break;
-}
+// ... see FastRoute Dispatcher
 ```
+
+Alternatively to generate routes, you can simply cache first parse by setting `'cacheEnabled' => true` in addRoute function.
 
 # Apply this to Lumen application
 
