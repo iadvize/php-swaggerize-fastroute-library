@@ -7,21 +7,6 @@
       "email": "marc.fricou@iadvize.com"
     }
   ],
-
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git@github.com:iadvize/lumen-doctrine.git"
-    },
-    {
-      "type": "git",
-      "url": "git@github.com:iadvize/api-swagger-ui.git"
-    },
-    {
-      "type": "git",
-      "url": "git@github.com:iadvize/standards.git"
-    }
-  ],
   "require": {
     "php": ">=5.5.21",
     "nikic/fast-route": "0.*",
