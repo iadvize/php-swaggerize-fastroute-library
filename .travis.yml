@@ -7,5 +7,5 @@ before_script:
   - ./vendor/bin/phpcs --config-set installed_paths $PWD/vendor/escapestudios/symfony2-coding-standard,$PWD/vendor/iadvize/standards/php >> /dev/null
 script:
   - phpunit --configuration tests/phpunit.xml
-  - ./vendor/bin/phpcs --standard=Iadvize app
-  - ./vendor/bin/phpmd app text vendor/iadvize/standards/php/Iadvize/phpmd.xml
+  - ./vendor/bin/phpcs --standard=Iadvize src
+  - ./vendor/bin/phpmd src text vendor/iadvize/standards/php/Iadvize/phpmd.xml
