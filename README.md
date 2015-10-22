@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library.svg?branch=master)](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library)
+
 # php-swaggerize-fastroute-library
 A library to automatically create FastRoute routes based on swagger JSON documentation
 # Install
