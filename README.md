@@ -1,20 +1,32 @@
-[![Build Status](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library.svg?branch=master)](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/?branch=master)
+ php-swaggerize-fastroute-library [![Build Status](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library.svg?branch=master)](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/?branch=master)
+=================================
 
-# php-swaggerize-fastroute-library
 A library to automatically create FastRoute routes based on swagger JSON documentation
-# Install
-To install with composer:
-```
-composer require iadvize/php-swaggerize-fastroute-library
-```
 
-# Generate route File (FastRoute compatible)
+## Examples
+
+### Generate route File (FastRoute compatible)
 
 ```
 vendor/bin/swaggerize swagger:scan path/to/swagger/json controllers\namespace [--routeFile=route/file/path]
 ```
 
-# Dispatch generated file or simply use cache
+## Install
+
+To install with composer:
+```
+composer require iadvize/php-swaggerize-fastroute-library
+```
+
+## Documentation
+
+### Generate route File (FastRoute compatible)
+
+```
+vendor/bin/swaggerize swagger:scan path/to/swagger/json controllers\namespace [--routeFile=route/file/path]
+```
+
+### Dispatch generated file or simply use cache
 
 You can then use FastRoute cached dispatcher to use generated file or directly use a cache dispatcher (file will be generated at first call).
 
@@ -40,7 +52,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r, [
 
 Alternatively to generate routes, you can simply cache first parse by setting `'cacheEnabled' => true` in addRoute function.
 
-# Apply this to Lumen application
+### Apply this to Lumen application
 
 To use this swagger routes in a Lumen Application (which use FastRoute as route library), you need to extends `Laravel\Lumen\Application` and override `createDispatcher` method.
 
@@ -77,10 +89,11 @@ class Application extends LumenApplication
 }
 ```
 
-# How handler is formed
+### How handler is formed
 
 Handlers are formed from route defined in swagger as [Lumen](http://lumen.laravel.com/docs/routing#named-routes) define it for controller class : `Controller@method`
-### Controller class generation
+
+#### Controller class generation
 
 Controller class is determined from path route with first character uppercased and with Controller at the end of file name
 
@@ -114,7 +127,7 @@ will generates respectively this handlers:
 * `PetsController@update`
 * `StoreController@create`
 
-### Method generation
+#### Method generation
 
 Controller method is mapped from HTTP method :
 * `GET`     => `get`,
@@ -125,3 +138,6 @@ Controller method is mapped from HTTP method :
 * `PATCH`   => `patch`,
 * `DELETE`  => `delete`,
 
+## Contribute
+
+Look at contribution guidelines here : [CONTRIBUTING.md](CONTRIBUTING.md)
