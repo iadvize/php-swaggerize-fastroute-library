@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/php-swaggerize-fastroute-library
     docker:
-      - image: circleci/php:5.5
+      - image: circleci/php:5
     steps:
       - checkout
       - run:
