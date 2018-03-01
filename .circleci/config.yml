@@ -11,7 +11,7 @@ jobs:
           command: composer install && ./vendor/bin/phpcs --config-set installed_paths $PWD/vendor/escapestudios/symfony2-coding-standard,$PWD/vendor/iadvize/php-convention/phpcs >> /dev/null
       - run:
           name: Run phpunit
-          command: phpunit --configuration tests/phpunit.xml
+          command: ./vendor/bin/phpunit --configuration tests/phpunit.xml
       - run:
           name: Run phpcs
           command: ./vendor/bin/phpcs --standard=Iadvize src
