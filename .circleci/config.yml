@@ -17,4 +17,4 @@ jobs:
           command: ./vendor/bin/phpcs --standard=Iadvize src
       - run:
           name: Run phpmd
-          commadn: ./vendor/bin/phpmd src text vendor/iadvize/php-convention/phpmd/phpmd.xml
+          command: ./vendor/bin/phpmd src text vendor/iadvize/php-convention/phpmd/phpmd.xml
