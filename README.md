@@ -1,4 +1,4 @@
- php-swaggerize-fastroute-library [![Build Status](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library.svg?branch=master)](https://travis-ci.org/iadvize/php-swaggerize-fastroute-library) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/?branch=master)
+ php-swaggerize-fastroute-library [![CircleCI](https://circleci.com/gh/iadvize/php-swaggerize-fastroute-library.svg?style=svg)](https://circleci.com/gh/iadvize/php-swaggerize-fastroute-library) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/?branch=master)
 =================================
 
 A library to automatically create FastRoute routes based on swagger JSON documentation
