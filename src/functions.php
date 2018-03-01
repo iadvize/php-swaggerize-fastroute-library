@@ -7,6 +7,8 @@ use Iadvize\SwaggerizeFastRoute\OperationParser\OperationParserInterface;
 use Swagger\Document;
 use Swagger\OperationReference;
 
+// @codingStandardsIgnoreFile
+
 /**
  * Scan the json file and build routes
  *
