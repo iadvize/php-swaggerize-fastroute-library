@@ -12,11 +12,10 @@ This library is deprecated and no longer maintained since 2015. Here is a guide 
 - check that your app uses this library `iadvize/php-swaggerize-fastroute-library` (search for `Iadvize\SwaggerizeFastRoute` package import in php code). If it does not, you can safely remove it from your `composer.json` and skip the next steps.
 - if your CI/CD or dockerfile uses the `swaggerize swagger:scan` command, you should:
   - run it manually once (use your full existing command, eg: `./vendor/bin/swaggerize swagger:scan storage/docs/definition.json "path/to/controllers" --routeFile somewhere/routeFile.php`)
-  - **commit the generated file** (eg: `routeFile.php`)
   - remove the `swaggerize swagger:scan` command from your CI/CD or dockerfile
 - remove the `iadvize/php-swaggerize-fastroute-library` from your `composer.json` (eg: `composer remove iadvize/php-swaggerize-fastroute-library`)
-
-If additional updates in routes are needed, you can manually update the routeFile.php or migrate to a standard [FastRoute setup](https://github.com/nikic/FastRoute?tab=readme-ov-file#usage).
+- convert the generated route file to a standard FastRoute setup (see [FastRoute documentation](https://github.com/nikic/FastRoute?tab=readme-ov-file#usage))
+- delete the routeFile.php file (not needed anymore)
 
 ## Examples
 
