@@ -1,7 +1,22 @@
  php-swaggerize-fastroute-library [![CircleCI](https://circleci.com/gh/iadvize/php-swaggerize-fastroute-library.svg?style=svg)](https://circleci.com/gh/iadvize/php-swaggerize-fastroute-library) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iadvize/php-swaggerize-fastroute-library/?branch=master)
 =================================
 
+> **⚠️ WARNING**: This repository is deprecated and no longer maintained since 2015. See removal guide [here](#removal-guide).
+
 A library to automatically create FastRoute routes based on swagger JSON documentation
+
+## Removal guide
+
+This library is deprecated and no longer maintained since 2015. Here is a guide to remove it from your project:
+
+- check that your app uses this library `iadvize/php-swaggerize-fastroute-library` (search for `Iadvize\SwaggerizeFastRoute` package import in php code). If it does not, you can safely remove it from your `composer.json` and skip the next steps.
+- if your CI/CD or dockerfile uses the `swaggerize swagger:scan` command, you should:
+  - run it manually once (use your full existing command, eg: `./vendor/bin/swaggerize swagger:scan storage/docs/definition.json "path/to/controllers" --routeFile somewhere/routeFile.php`)
+  - remove the `swaggerize swagger:scan` command from your CI/CD or dockerfile
+- convert the generated route file to a standard FastRoute setup (see [FastRoute documentation](https://github.com/nikic/FastRoute?tab=readme-ov-file#usage)), usually the same file as the one using the `Iadvize\SwaggerizeFastRoute` package.
+- remove the `Iadvize\SwaggerizeFastRoute` package import from your php code and all usage.
+- remove the `iadvize/php-swaggerize-fastroute-library` from your `composer.json` (eg: `composer remove iadvize/php-swaggerize-fastroute-library`)
+- delete the routeFile.php file (not needed anymore)
 
 ## Examples
 
